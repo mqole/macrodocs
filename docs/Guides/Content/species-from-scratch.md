@@ -18,9 +18,10 @@ This is a reference guide for anyone who wants to create their own SS14 species.
 
 Wizard's Den currently uses an implementation of `BodySystem` that was overhauled in January of 2026, and completely redefines how species are handled (henceforth referred to as Nubody). Many downstream servers still use the old implementation (Oldbody) to keep interaction with various medical and surgery systems.
 
-This guide will walk through the steps for creating species in both Nubody and Oldbody, using the example of the Gray species.
+This guide will walk through the steps for creating species in both Nubody and Oldbody, using the example of the Moth species.
 
 **Relevant reading:**
+- [Adding a Simple Bike Horn - Space Wizards Development Wiki](https://docs.spacestation14.com/en/ss14-by-example/adding-a-simple-bikehorn.html)
 - [Converting Oldbody to Nubody - Space Wizards Development Wiki](https://docs.spacestation14.com/en/ss14-by-example/converting-oldbody-to-nubody.html)
 
 ## Species Checklist
@@ -68,13 +69,115 @@ Make sure all these prototype definitions are in the right folders. Keeping your
 
 ## Making a 'Urist'
 
-We're going to work through creating our species from the bottom up, meaning that we will be starting with making our 'Urist' mob and defining it as a species at the end.
+We're going to work through creating our Moth species from the bottom up, meaning that we will be starting with making our 'Urist' mob and defining it as a species at the end.
 
 <Tabs>
   <TabItem value="Nubody">
 
+  First, let's make a new file `moth.yml` in `Resources/Prototypes/Body/Species`. We'll start by defining our new entity, `MobMoth` like so:
+
+  ```yaml
+  - type: entity
+    parent:
+    - AppearanceMoth
+    - BaseSpeciesMobOrganic
+    id: MobMoth
+    name: Urist McFluff
+    components:
+  ```
+
+  Our entity here is parented to `BaseSpeciesMobOrganic`, which is an abstact entity that comes with the components that are needed for all species (physics, hands, status effects, et cetera). This base entity can be found in `Resources/Prototypes/Body/species_base.yml` if you want to look at all of the components that come with it.
+
+  Notice how we've also defined another parent, `AppearanceMoth`. We'll focus on this parent entity in the next section. Don't worry about it for now.
+  
   </TabItem>
   <TabItem value="Oldbody">
+  
+  First, let's make a new file `moth.yml` in `Resources/Prototypes/Entities/Mobs/Species`. We'll start by defining our new entity, `BaseMobMoth` like so:
+
+  ```yaml
+  - type: entity
+    save: false
+    abstract: true
+    parent: BaseSpeciesMobOrganic
+    id: BaseMobMoth
+    name: Urist McFluff
+    components:
+  ```
+
+  Our entity here is parented to `BaseSpeciesMobOrganic`, which is an abstact entity that comes with the components that are needed for all species (physics, hands, status effects, et cetera). This base entity can be found in `Resources/Prototypes/Entities/Mobs/Species/base.yml` if you want to look at all of the components that come with it.
+
+  </TabItem>
+</Tabs>
+
+Now that we have our base Moth mob, it's time to consider what unique aspects our species will have, and add components to our mob accordingly. I want my Moth species to have a unique blood type, more emotes, a special accent, and a different set of damage modifiers. I'll add components to accomplish this in accordance with ECS:
+
+  ```yaml
+    components:
+    - type: Damageable
+      damageModifierSet: Moth
+    - type: Speech
+      speechVerb: Moth
+      allowedEmotes: ['Chitter', 'Squeak', 'Flap']
+    - type: Bloodstream
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: InsectBlood
+          Quantity: 300
+    - type: MothAccent
+  ```
+
+  While adding these components, I had to create a new `DamageModifierSet` and new `SpeechVerb`. If you're not sure how to add new components to an entity, it's recommended that you read the SS14 [bikehorn guide](https://docs.spacestation14.com/en/ss14-by-example/adding-a-simple-bikehorn.html) to learn the basics of ECS.
+
+  This is just an example of what you can add to a species. Theoretically, you can add any component you like to your species. Take a look at the components attached to existing species if you aren't sure what your species might need.
+
+## Appearance
+
+Our 'Urist' mob is done. Now let's define its appearance. Nubody creates a new entity for this which our Urist inherits, while Oldbody defines everything on the Urist itself.
+
+<Tabs>
+  <TabItem value="Nubody">
+
+  It's time to revisit `AppearanceMoth`. I'll define this as a new entity, putting it above our Urist in the same `moth.yml` file.
+
+  ```yaml
+  - type: entity
+    parent: BaseSpeciesAppearance
+    id: AppearanceMoth
+    categories: [ HideSpawnMenu ]
+    name: moth appearance
+    components:
+  ```
+
+  Same as before, we're parenting this entity to `BaseSpeciesAppearance`, which can be found in `appearance_base.yml`. Pay special attention to `HideSpawnMenu` - this category means that this entity will not be shown in the ingame entity spawn menu, which means that it's less likely to be spawned on accident when someone's looking for our Urist.
+
+  There are two components that we *need* to add to this entity: `InitialBody` and `HumanoidProfile`. If you're familiar with Oldbody, these are roughly equivalent to `Body` and `HumanoidAppearance` respectively - they define the body parts of the species, and the visual data that will be used.
+
+  ```yaml
+    components:
+    - type: InitialBody
+      organs:
+        # A list of organs will go here. We'll look at this later!
+    - type: HumanoidProfile
+      species: Moth
+  ```
+
+
+  </TabItem>
+  <TabItem value="Oldbody">
+
+  To handle the appearance of our Urist, we first need to add a `HumanoidAppearance` component and a `Body` component to the mob.
+
+  ```yaml
+    components:
+    - type: HumanoidAppearance
+      species: Moth
+      hideLayersOnEquip:
+      - HeadTop
+    - type: Body
+      prototype: Moth
+      requiredLegs: 2
+  ```
 
   </TabItem>
 </Tabs>
@@ -88,6 +191,7 @@ Expect a better guide on displacements in the future. It's a complicated system 
 :::
 
 ## Body, Parts, Organs
+
 
 <Tabs>
   <TabItem value="Nubody">
