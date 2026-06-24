@@ -8,6 +8,11 @@ conventions:
   permalink: '/conventions'
   description: 'Standards by which Macrocosm handles specific procedures.'
 
+guides:
+  label: 'Guides'
+  permalink: '/guides'
+  description: 'Instructions on how to perform a certain task.'
+
 microcosms:
   label: 'Microcosms'
   permalink: '/microcosms'
@@ -17,3 +22,8 @@ proposals:
   label: 'Proposals'
   permalink: '/proposals'
   description: 'Feature proposals and design documents.'
+
+ui:
+  label: 'User Interface'
+  permalink: '/ui'
+  description: 'Documents focused on in-game user interface development.'
