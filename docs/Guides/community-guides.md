@@ -22,4 +22,5 @@ If you wish to add a link to this index, please open a PR on our [docs repositor
 - [SS14 Dev Tutorials](https://hackmd.io/@FancyPlanks/B1Zx8zA-zx#SS14-Dev-Tutorials) by FancyPlanks
 - [SS14 General Maintainer's Guide](https://docs.eggware.social/NETaiznMT_mvkF5nAVi2yQ) by portfiend
 - [SS14: Food Checklist](https://docs.eggware.social/PdyFS6QVR9S3ITLRAVEPHw) by portfiend
+- [SS14: Species Checklist](https://docs.eggware.social/uNi179CnS8-eFT-248Mwwg) by portfiend
 - [The Slarti Guide](https://hackmd.io/@Slart/S1hsoGFm1l) by Slart
