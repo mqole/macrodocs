@@ -13,6 +13,7 @@ All pull requests fall under one of four categories:
 * Category B: Universally Agreed-on
 * Category C: Extreme Maintenance Burden
 * Category D: Intended Behavior
+* Category E: Upstream Merge (colloquially "upmerge")
 
 The categorization of each Pull Request is done by the triage team.
 
@@ -46,3 +47,24 @@ Category D does **not** apply to "subjective" changes, such as balance tweaks, u
 
 - ***Applicable:*** The metabolism delay of a species is meant to be `0.5x` as long, but was written as `2x` instead.
 - ***Not Applicable:*** The metabolism delay of a species is `2x` as long, but a contributor thinks this is too much and wants to make it `1.5x` instead. This would likely be Category A.
+
+### Category E: Upstream Merge
+
+This is a pull request that exclusively pulls changes from Wizard's Den's `master` branch. A single category E pull request may contain dozens of features, each represented by its own commit within the pull request. For this reason and in order to maintain organisation of the codebase, upstream merges **must be merged via a merge commit** as opposed to squash merging.
+
+Like category D, these pull requests are considered "pre-approved", and **do not require a vote** as it is expected that Wizard's Den will have provided a level of quality control as to the pull request's contents.
+
+If the author of a category E pull request suspects that commit(s) within the pull request may require a vote, they should make note of these commit(s) within the body of the pull request. All category E pull requests require **at least one triage review** to catch any commit(s) that may require a vote. Any Microcosm representative may initiate a vote to revert any commit(s) within this pull request at their discretion. If such a vote passes, reverting the commit(s) should be done in a seperate pull request.
+
+Any "fix commits," or otherwise any commits that do not belong to Wizard's Den, must be rebased using `git rebase -i` to keep the number of commits to a minimum. These commits require **at least one code review** before the pull request may be merged.
+
+:::note
+
+Expect more detailed documentation on the technical aspects of how to properly perform an upmerge in the future.
+
+:::
+
+Category E pull requests require the following documentation:
+- Any merge conflicts that were resolved between Macrocosm and Wizard's Den, and how they were resolved.
+- Any changes made to Macrocosm content that could be classified as a 'breaking change' by the standards of other pull request categories (for example, replacing one component with another after an upstream refactor).
+- Any changes that were made to resolve test fails if such a change was not already documented by the above criteria.
