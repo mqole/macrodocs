@@ -16,6 +16,7 @@ If you wish to add a link to this index, please open a PR on our [docs repositor
 - [A Quick Guide to Feedback](https://docs.google.com/document/d/1-FfZou99gg5i4zdTKy01r-8VkyFn-ILwunuEYeQ94Uc/edit?usp=drivesdk) by DOSRG
 - [Beck's Robust ECS for Dummies](https://docs.google.com/document/d/1GCzkuWUqCNcl4WrmQQMbWgB5q8o0k6LYI46hqSt5cPY/edit?tab=t.0) by widgetbeck
 - [Intermediate Git Tutorial](https://notaslug.org/posts/git-tutorial/) by aquif
+- [Making Animated Sprites in SS14](https://hackmd.io/@crayolachimera/Skes1P_yZg) by crayolachimera
 - [Nubody vs old BodySystem](https://hackmd.io/@pontaos/HyITzBH0Zx) by Janet Blackquill
 - [Solutions Refactor Guide](https://docs.eggware.social/qMNsCQWXTSSbOZ-7jZm3CQ) by portfiend
 - [SS14 Coordinate Systems](https://hackmd.io/@Slart/By0ACwcbxe) by Slart
