@@ -36,6 +36,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          routeBasePath: '/',
         },
         blog: {
           showReadingTime: true,
@@ -55,8 +56,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/docslogo.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -69,9 +69,15 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'documents',
           position: 'left',
           label: 'Documents',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'guides',
+          position: 'left',
+          label: 'Guides',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -84,28 +90,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        // {
-        //  title: 'Docs',
-        //  items: [
-        //    {
-        //      label: 'Tutorial',
-        //      to: '/docs/intro',
-        //    },
-        //  ],
-        // },
-        // {
-        //   title: 'Community',
-        //   items: [
-        //     {
-        //       label: 'Discord',
-        //       href: 'https://discordapp.com/invite/docusaurus',
-        //     },
-        //     {
-        //       label: 'X',
-        //       href: 'https://x.com/docusaurus',
-        //     },
-        //   ],
-        // },
         {
           title: 'More',
           items: [
