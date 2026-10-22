@@ -111,6 +111,19 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    mermaid: {
+      options: {
+        treeView: {
+          showIcons: true,
+        },
+        themeVariables: {
+          treeView: {
+            labelColor: '#ffffff',
+            lineColor: '#ffffff',
+          },
+        },
+      },
+    },
   } satisfies Preset.ThemeConfig,
 };
 
